@@ -59,4 +59,3 @@ while True:
 
         pastFrequencies.append(currentFrequency)
 
-
