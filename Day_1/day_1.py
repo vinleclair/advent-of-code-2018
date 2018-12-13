@@ -24,10 +24,13 @@ def main():
 def parse_input_file():
 
     frequencies = []
-
-    with open(input("Name of input file: "), 'r') as fp:
-        for line in fp:
-            frequencies.append(int(line))
+    try:
+        with open(input("Name of input file: "), 'r') as fp:
+            for line in fp:
+                frequencies.append(int(line))
+    except FileNotFoundError:
+        print("\nError: File not found.")
+        exit(1)
 
     return frequencies
 
