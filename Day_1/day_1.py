@@ -21,24 +21,6 @@ def main():
     print("Part 2 :", current_frequency)
 
 
-def find_letters_in_common(box_ids):
-    i = 0
-    j = 1
-    while i < len(box_ids):
-        while j < len(box_ids):
-            count_diffs = 0
-            for a, b in zip(box_ids[i], box_ids[j]):
-                if a!=b:
-                    count_diffs += 1
-                print("Word #:",i,j, "Differences :", count_diffs)
-                if count_diffs == 1:
-                    first_word = box_ids[i]
-                    second_word = box_ids[j]
-                j += 1
-        i += 1
-        print("yo")
-
-
 def parse_input_file():
 
     frequencies = []
