@@ -2,7 +2,8 @@ def main():
 
     frequencies = parse_input_file()
     current_frequency = 0
-    past_frequencies = []
+    past_frequencies = {current_frequency}
+
     calibrating = True
 
     print("\nCalibrating...")
@@ -14,7 +15,7 @@ def main():
                 calibrating = False
                 break
 
-            past_frequencies.append(current_frequency)
+            past_frequencies.add(current_frequency)
 
     print("--- Puzzle Answers ---")
     print("Part 1 :", sum(frequencies))
