@@ -1,41 +1,22 @@
 import fileinput
-import re
 
 
 def main():
-    license = parse_input_file()
-    print(part_1(license))
-    return 0
+    tree = parse(map(int, next(fileinput.input()).split()))
+    print("Part 1:", part_1(tree))
 
 
-def part_1(license):
-    cursor = 0
-    child_nodes_qty = 0
-    metadata_quantity = 0
-    total = 0
-    for index, number in enumerate(license):
-        if cursor == 0:
-            child_nodes_qty = license[index]
-            metadata_qty = license[index + 1]
-            cursor = child_nodes_qty + 2
-            for range_index in range(metadata_qty):
-                print(license[range_index])
-                total += license[range_index]
-                cursor += 1
-            index = cursor
-        else:
-            cursor = 0
-        if index > len(license):
-            break
-
-    return total
-        
+def part_1(node):
+    metadata, children = node
+    return sum(metadata) + sum(part_1(x) for x in children)
 
 
-def parse_input_file():
-    for number in fileinput.input():
-        return list(map(int,re.findall(r'\d+', number)))
+def parse(it):
+    child_qty, metadata_qty = next(it), next(it)
+    children = [parse(it) for _ in range(child_qty)]
+    metadata = [next(it) for _ in range(metadata_qty)]
 
+    return (metadata, children)
 
 if __name__ == "__main__":
     main()
